@@ -1,7 +1,15 @@
+import React, { useState } from 'react';
 import './App.css';
 import TodoTable from './components/TodoTable';
 
 function App() {
+
+  const [todos, setTodos] = useState([
+    { rowNumber: 1, rowDescription: 'Feed Puppy', rowAssigned: 'User One' },
+    { rowNumber: 2, rowDescription: 'Water Plants', rowAssigned: 'User Two' },
+    { rowNumber: 3, rowDescription: 'Make Dinner', rowAssigned: 'User One' },
+    { rowNumber: 4, rowDescription: 'Charge Phone Battery', rowAssigned: 'User One' }
+  ])
 
   const addTodo = () => {
     if (todos.length > 0) {
@@ -10,17 +18,9 @@ function App() {
         rowDescription: 'New Todo',
         rowAssigned: 'User Three'
       };
-      todos.push(newTodo);
-      console.log(todos);
+      setTodos(todos => [...todos, newTodo])
     }
   }
-
-  const todos = [
-    { rowNumber: 1, rowDescription: 'Feed Puppy', rowAssigned: 'User One' },
-    { rowNumber: 2, rowDescription: 'Water Plants', rowAssigned: 'User Two' },
-    { rowNumber: 3, rowDescription: 'Make Dinner', rowAssigned: 'User One' },
-    { rowNumber: 4, rowDescription: 'Charge Phone Battery', rowAssigned: 'User One' }
-  ]
 
   return (
     <div className='mt-5 container'>
