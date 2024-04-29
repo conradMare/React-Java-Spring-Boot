@@ -1,4 +1,4 @@
-class Customer {
+class Customer1 {
 
     firstName: string;
     lastName: string;
@@ -20,7 +20,7 @@ class Customer {
 // console.log(myCustomer.lastName);
 
 // Use the constructor
-let myCustomer = new Customer("Martin", "Dixon");
+let myCustomer = new Customer1("Martin", "Dixon");
 
 console.log(myCustomer.firstName);
 console.log(myCustomer.lastName);

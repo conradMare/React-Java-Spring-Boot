@@ -1,4 +1,4 @@
-class Customer2 {
+class Customer3 {
 
     private _firstName: string;
     private _lastName: string;
@@ -26,7 +26,7 @@ class Customer2 {
     }
 }
 
-let myCustomer3 = new Customer2("Martin", "Dixon");
+let myCustomer2= new Customer3("Martin", "Dixon");
 
-console.log(myCustomer3.firstName);
-console.log(myCustomer3.lastName);
+console.log(myCustomer2.firstName);
+console.log(myCustomer2.lastName);
