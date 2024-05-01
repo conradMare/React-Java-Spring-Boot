@@ -1,4 +1,4 @@
-export const Heros = () => {
+export const Heroes = () => {
     return (
         <div>
             <div className='d-none d-lg-block'>
