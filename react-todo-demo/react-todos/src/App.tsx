@@ -14,7 +14,7 @@ function App() {
     { rowNumber: 4, rowDescription: 'Charge Phone Battery', rowAssigned: 'User One' }
   ])
 
-  const addTodo = (description, assigned) => {
+  const addTodo = (description: string, assigned: string) => {
 
     let rowNumber = 0;
 
@@ -32,7 +32,7 @@ function App() {
     setTodos(todos => [...todos, newTodo])
   }
 
-  const deleteTodo = (deleteTodoRowNumber) => {
+  const deleteTodo = (deleteTodoRowNumber: number) => {
     let filtered = todos.filter(function (value) {
       return value.rowNumber !== deleteTodoRowNumber;
     });
