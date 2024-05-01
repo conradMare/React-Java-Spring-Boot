@@ -19,9 +19,9 @@ export const Navbar = () => {
                         </li>
                     </ul>
                     <ul className='navabr-nav ms-auto'>
-                        <li className='nav-item m-1'>
+                        {/* <li className='nav-item m-1'> */}
                             <a type='button' className='btn btn-outline-light' href='#'>Sign In</a>
-                        </li>
+                        {/* </li> */}
                     </ul>
                 </div>
             </div>
