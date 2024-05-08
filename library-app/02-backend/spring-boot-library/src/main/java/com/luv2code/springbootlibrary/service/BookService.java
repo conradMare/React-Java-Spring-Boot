@@ -31,7 +31,7 @@ public class BookService {
         Checkout validateCheckout = checkoutRepository.findByUserEmailAndBookId(userEmail, bookId);
 
         if (!book.isPresent() || validateCheckout != null || book.get().getCopiesAvailable() <= 0) {
-            throw  new Exception("Book doesn't exist or already checked out by user");
+            throw new Exception("Book doesn't exist or already checked out by user");
         }
 
         book.get().setCopiesAvailable(book.get().getCopiesAvailable() - 1);
@@ -47,5 +47,14 @@ public class BookService {
         checkoutRepository.save(checkout);
 
         return book.get();
+    }
+
+    public Boolean checkoutBookByUser(String email, Long bookId) {
+        Checkout validateCheckout = checkoutRepository.findByUserEmailAndBookId(email, bookId);
+        if (validateCheckout != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
