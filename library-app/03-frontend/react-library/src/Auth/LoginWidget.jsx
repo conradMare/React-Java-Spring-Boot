@@ -1,6 +1,6 @@
 import { Redirect } from "react-router-dom";
 import { useOktaAuth } from "@okta/okta-react";
-import { error } from "console";
+
 import { SpinnerLoading } from "../layouts/Utils/SpinnerLoading";
 import OktaSignInWidget from "./OktaSignInWidget";
 
@@ -11,7 +11,7 @@ const LoginWidget = ({ config }) => {
     };
 
     const onError = (error) => {
-        console.log('Sign in error: ', err);
+        console.log('Sign in error: ', error);
     }
 
     if (!authState) {
