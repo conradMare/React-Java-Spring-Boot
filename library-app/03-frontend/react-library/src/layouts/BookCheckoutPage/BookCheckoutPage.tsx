@@ -6,7 +6,6 @@ import { CheckoutAndReviewBox } from "./CheckoutAndReviewBox";
 import ReviewModel from "../../models/ReviewModel";
 import { LatestReviews } from "./LatestReviews";
 import { useOktaAuth } from "@okta/okta-react";
-import { error } from "console";
 
 export const BookCheckoutPage = () => {
 
@@ -57,7 +56,7 @@ export const BookCheckoutPage = () => {
             setIsLoading(false);
             setHttpError(error.message);
         })
-    }, []);
+    }, [bookId]);
 
     useEffect(() => {
         const fetchBookReviews = async () => {
@@ -102,11 +101,27 @@ export const BookCheckoutPage = () => {
             setIsLoadingReview(false);
             setHttpError(error.message);
         })
-    }, []);
+    }, [bookId]);
 
     useEffect(() => {
         const fetchUserCurrentLoansCount = async () => {
-
+            if (authState && authState.isAuthenticated) {
+                const url = `http://localhost:8080/api/books/secure/currentloans/count`;
+                const requestOptions = {
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${authState.accessToken?.accessToken}`,
+                        'Content-type': 'application/json'
+                    }
+                };
+                const currentLoansCountReponse = await fetch(url, requestOptions);
+                if (!currentLoansCountReponse.ok) {
+                    throw new Error('Something went wrong!');
+                }
+                const currentLoansCountReponseJson = await currentLoansCountReponse.json();
+                setCurrentLoansCount(currentLoansCountReponseJson);
+            }
+            setIsLoadingCurrentLoansCount(false);
         }
         fetchUserCurrentLoansCount().catch((error: any) => {
             setIsLoadingCurrentLoansCount(false);
@@ -115,7 +130,7 @@ export const BookCheckoutPage = () => {
     }, [authState]);
 
 
-    if (isLoading || isLoadingReview) {
+    if (isLoading || isLoadingReview || isLoadingCurrentLoansCount) {
         return (
             <SpinnerLoading />
         )
@@ -149,7 +164,7 @@ export const BookCheckoutPage = () => {
                             <StarsReview rating={totalStars} size={32} />
                         </div>
                     </div>
-                    <CheckoutAndReviewBox book={book} mobile={false} />
+                    <CheckoutAndReviewBox book={book} mobile={false} currentLoansCount={currentLoansCount}/>
                 </div>
                 <hr />
                 <LatestReviews reviews={reviews} bookId={book?.id} mobile={false} />
@@ -171,7 +186,7 @@ export const BookCheckoutPage = () => {
                         <StarsReview rating={totalStars} size={32} />
                     </div>
                 </div>
-                <CheckoutAndReviewBox book={book} mobile={true} />
+                <CheckoutAndReviewBox book={book} mobile={true} currentLoansCount={currentLoansCount}/>
                 <hr />
                 <LatestReviews reviews={reviews} bookId={book?.id} mobile={true} />
             </div>
