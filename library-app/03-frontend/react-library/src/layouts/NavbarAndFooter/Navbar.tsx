@@ -33,16 +33,17 @@ export const Navbar = () => {
                         <li className='nav-item'>
                             <NavLink className='nav-link' to='/search'>Search Books</NavLink>
                         </li>
+                        {authState.isAuthenticated &&
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/shelf">Shelf</NavLink>
+                            </li>
+                        }
                     </ul>
                     <ul className='navabr-nav ms-auto'>
                         {!authState.isAuthenticated ?
-                            // <li className='nav-item m-1'>
-                                <Link type='button' className='btn btn-outline-light' to='/login'>Sign In</Link>
-                            // </li>
+                            <Link type='button' className='btn btn-outline-light' to='/login'>Sign In</Link>
                             :
-                            // <li>
-                                <button className="btn btn-outline-light" onClick={handleLogout}>Logout</button>
-                            // </li>
+                            <button className="btn btn-outline-light" onClick={handleLogout}>Logout</button>
                         }
                     </ul>
                 </div>
