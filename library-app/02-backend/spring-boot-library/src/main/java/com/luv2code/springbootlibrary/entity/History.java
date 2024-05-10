@@ -46,7 +46,7 @@ public class History {
 
     @Column(name = "description")
     private String description;
-    
+
     @Column(name = "img")
     private String img;
 }
