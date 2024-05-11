@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 public class MessagesService {
-    
+
     private MessageRepository messageRepository;
 
     @Autowired
